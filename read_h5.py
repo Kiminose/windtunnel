@@ -24,8 +24,8 @@ def read_h5(filename):
         if "DATETIME" in data.columns:
             data["DATETIME"] = pandas.to_datetime(data["DATETIME"].str.decode("utf-8"))
             data.set_index("DATETIME", inplace=True)
-        elif "NPT" in data.columns:
-            data.set_index("NPT", inplace=True)
+        # elif "NPT" in data.columns:
+        #     data.set_index("NPT", inplace=True)
         data.sort_index(inplace=True)
         data.replace(9999., numpy.nan)
     return data
@@ -54,7 +54,7 @@ def convert_h5force_dataframe(fichier):
 
 def convert_h5pressure_dataframe(fichier):
     for element in fichier.columns:
-        if not element.startswith("KP_PS"):
+        if element != "NPT" and not (element.startswith("KP_PS")) :
             del fichier[element]
 
 
