@@ -18,15 +18,17 @@ curseur.execute("PRAGMA foreign_keys = ON")
 
 
 
-curseur.execute("SELECT ALPHAC,NPT FROM données_force WHERE NLOT = 550")
-Tuple_alpha = [(el[0], el[1]) for el in curseur.fetchall()]
-curseur.execute("SELECT KP_PS3204,NPT FROM données_pressure WHERE NLOT = 550")
-Tuple_KP_PS3204 = [(el[0], el[1]) for el in curseur.fetchall()]
-Tuple_alpha.sort(key=lambda tup: tup[1])
-Tuple_KP_PS3204.sort(key=lambda tup: tup[1])
-Tuple_alpha_pressure = [(el1[0], el2[0]) for (el1,el2) in zip(Tuple_alpha,Tuple_KP_PS3204)]
-alpha = [alph[0] for alph in Tuple_alpha_pressure]
-pressure = [cxc[1] for cxc in Tuple_alpha_pressure]
+curseur.execute("SELECT ALPHAC,NPT, NLOT FROM données_force WHERE M0C < 0.2")
+Tuple_alpha = [(el[0], el[1], el[2]) for el in curseur.fetchall()]
+curseur.execute("SELECT KP_PS3204,NPT,NLOT FROM données_pressure")
+Tuple_KP_PS3204 = [(el[0], el[1], el[2]) for el in curseur.fetchall()]
+Alpha_prec = [(0,0) for _ in range(len(Tuple_alpha))]
+i =0
+
+
+Alpha_prec.sort(key=lambda tup: tup[0])
+alpha = [alph[0] for alph in Alpha_prec]
+pressure = [cxc[1] for cxc in Alpha_prec]
 # Tuple_alpha_cxc = [(el[0], el[1]) for el in curseur.fetchall()]
 # Tuple_alpha_cxc.sort(key=lambda tup: tup[0])
 # alpha = [alph[0] for alph in Tuple_alpha_cxc]

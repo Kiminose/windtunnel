@@ -1,7 +1,7 @@
 #! python3
 
 from read_h5 import *
-from create_sqlite import *
+from create_sqlite_2table import *
 
 
 
