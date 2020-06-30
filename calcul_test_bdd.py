@@ -61,29 +61,28 @@ curseur.execute("PRAGMA foreign_keys = ON")
 
 
 
-curseur.execute("SELECT id_date FROM données ")
+curseur.execute("SELECT ALPHAC, BETA, RE0C FROM données ")
 
 # Alpha_prec = [(el[0], el[1]) for el in curseur.fetchall()]
 #
 # Alpha_prec.sort(key=lambda tup: tup[0])
 #
-Tuple_alpha_cxc = [(el) for el in curseur.fetchall()]
-print(Tuple_alpha_cxc)
+Tuple_alpha_cxc = [(el[0], el[1], el[2]) for el in curseur.fetchall()]
 #Tuple_alpha_cxc.sort(key=lambda tup: tup[0])
-# alpha = [alph[0] for alph in Tuple_alpha_cxc]
-# beta = [cxc[1] for cxc in Tuple_alpha_cxc]
-# Moc = [cxc[2] for cxc in Tuple_alpha_cxc]
+alpha = [alph[0] for alph in Tuple_alpha_cxc]
+beta = [cxc[1] for cxc in Tuple_alpha_cxc]
+Moc = [cxc[2] for cxc in Tuple_alpha_cxc]
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
 #
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
 #
-#
-# ax.scatter(alpha, beta, Moc)
-# plt.xlabel('alpha')
-# plt.ylabel('beta')
-# plt.legend(["M0C"])
-# plt.show()
-#
+ax.scatter(alpha, beta, Moc)
+plt.xlabel('alpha')
+plt.ylabel('beta')
+plt.legend(["M0C"])
+plt.show()
+
 #
 
 # alpha = [alph[0] for alph in Alpha_prec]
